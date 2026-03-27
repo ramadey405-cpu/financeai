@@ -419,6 +419,19 @@ input[type=range]{background:transparent;border:none;padding:6px 0;accent-color:
   </div>
 </div>
 
+
+<!-- AI Insight Modal -->
+<div class="ai-overlay" id="ai-overlay" onclick="if(event.target===this)closeAI()">
+  <div class="ai-modal">
+    <div class="ai-modal-head">
+      <span class="ai-modal-title" id="ai-modal-title">AI Analysis</span>
+      <button class="ai-modal-close" onclick="closeAI()">✕</button>
+    </div>
+    <div class="ai-modal-body" id="ai-modal-body">
+      <div class="ai-loading"><div class="ai-spinner"></div> Generating insights…</div>
+    </div>
+  </div>
+</div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script>
 // ── Backend URL — auto-detects on Vercel, can be overridden ──────────────────
@@ -709,8 +722,45 @@ function clampAmt() {
 }
 
 function fmt(n) { return n >= 1e6 ? (n/1e6).toFixed(2) + 'M' : n >= 1e3 ? (n/1e3).toFixed(1) + 'k' : n.toString(); }
-function doAnalysis() { alert('Full analysis report — connect your backend for AI-generated insights.'); }
-function doScreen()   { alert('Stock screener — connect your backend to filter by fundamentals.'); }
+function closeAI() { document.getElementById('ai-overlay').classList.remove('show'); }
+
+async function doAnalysis() {
+  const sector  = document.getElementById('sector')?.value || 'balanced';
+  const horizon = document.getElementById('horizon')?.value || 'medium';
+  const amount  = parseFloat(document.getElementById('amt-direct')?.value || document.getElementById('inv-slider')?.value || 10000);
+  document.getElementById('ai-modal-title').textContent = 'AI Portfolio Analysis — ' + sector.charAt(0).toUpperCase() + sector.slice(1);
+  document.getElementById('ai-modal-body').innerHTML = '<div class="ai-loading"><div class="ai-spinner"></div> Generating insights…</div>';
+  document.getElementById('ai-overlay').classList.add('show');
+  try {
+    const res  = await fetch(`${BACKEND_URL}/api/analysis`, {
+      method: 'POST', headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ sector, horizon, amount })
+    });
+    const data = await res.json();
+    if (data.error) throw new Error(data.error);
+    document.getElementById('ai-modal-body').textContent = data.analysis;
+  } catch(e) {
+    document.getElementById('ai-modal-body').textContent = '⚠ ' + e.message;
+  }
+}
+
+async function doScreen() {
+  const sector = document.getElementById('sector')?.value || 'balanced';
+  document.getElementById('ai-modal-title').textContent = 'AI Stock Screener — ' + sector.charAt(0).toUpperCase() + sector.slice(1);
+  document.getElementById('ai-modal-body').innerHTML = '<div class="ai-loading"><div class="ai-spinner"></div> Screening stocks…</div>';
+  document.getElementById('ai-overlay').classList.add('show');
+  try {
+    const res  = await fetch(`${BACKEND_URL}/api/screen`, {
+      method: 'POST', headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ sector })
+    });
+    const data = await res.json();
+    if (data.error) throw new Error(data.error);
+    document.getElementById('ai-modal-body').textContent = data.screen;
+  } catch(e) {
+    document.getElementById('ai-modal-body').textContent = '⚠ ' + e.message;
+  }
+}
 
 // ── Loan form ─────────────────────────────────────────────────────────────────
 function onTermChange() {
