@@ -558,13 +558,13 @@ function clampAmt(){
   const v = parseInt(direct.value) || 0;
   if(v < 1000){ direct.value = 1000; direct.classList.remove('error'); updateAmt('input'); }
 }
-//function doAnalysis(){
- // const r=document.getElementById('risk-profile').value,s=document.getElementById('sector').value,a=document.getElementById('amt-disp').textContent,h=document.getElementById('horizon').value;
- // sendPrompt('Using the BlackRock Portfolio Construction framework, give me a detailed investment analysis. Risk: '+r+', Amount: '+a+', Horizon: '+h+', Sector: '+s+'. Include specific ETF picks with ticker symbols, rebalancing rules, tax efficiency strategy, and a one-page investment policy statement.');
+function doAnalysis(){
+  const r=document.getElementById('risk-profile').value,s=document.getElementById('sector').value,a=document.getElementById('amt-disp').textContent,h=document.getElementById('horizon').value;
+  sendPrompt('Using the BlackRock Portfolio Construction framework, give me a detailed investment analysis. Risk: '+r+', Amount: '+a+', Horizon: '+h+', Sector: '+s+'. Include specific ETF picks with ticker symbols, rebalancing rules, tax efficiency strategy, and a one-page investment policy statement.');
 }
-//function doScreen(){
- // const r=document.getElementById('risk-profile').value,s=document.getElementById('sector').value;
- // sendPrompt('Apply the Goldman Sachs Stock Screener framework and screen for the top 10 stocks that fit a '+r+' risk profile with '+s+' sector preference. Include P/E ratios vs sector averages, revenue growth trends, moat ratings, and entry price zones.');
+function doScreen(){
+  const r=document.getElementById('risk-profile').value,s=document.getElementById('sector').value;
+  sendPrompt('Apply the Goldman Sachs Stock Screener framework and screen for the top 10 stocks that fit a '+r+' risk profile with '+s+' sector preference. Include P/E ratios vs sector averages, revenue growth trends, moat ratings, and entry price zones.');
 }
 
 function rebuild(){
