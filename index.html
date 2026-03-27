@@ -169,9 +169,7 @@ input[type=range]{background:transparent;border:none;padding:6px 0;accent-color:
 .conf-row{display:flex;justify-content:space-between;font-size:11px;color:var(--ink3)}
 .conf-pct{font-family:var(--mono);font-weight:500}
 .reco{background:var(--surface2);border-left:3px solid var(--accent);border-radius:0 var(--r-sm) var(--r-sm) 0;padding:12px 14px;font-size:13px;color:var(--ink2);line-height:1.7}
-/* api banner */
-.api-banner{background:var(--amber-soft);border:1px solid #f5d88a;border-radius:var(--r-sm);padding:10px 14px;font-size:12px;color:var(--amber);margin-bottom:16px;display:none}
-.api-banner.show{display:block}
+
 @media(max-width:768px){
   .p-layout{grid-template-columns:1fr}
   .p-sidebar{border-right:none;border-bottom:1px solid var(--line)}
@@ -256,7 +254,7 @@ input[type=range]{background:transparent;border:none;padding:6px 0;accent-color:
     </div>
 
     <div class="p-main">
-      <div class="api-banner" id="api-banner">⚠ Live stock data unavailable — showing sample data. Set BACKEND_URL to enable live prices.</div>
+
       <div class="kpi-row" id="kpi-row"></div>
       <div class="tab-strip">
         <div class="s-tab active" onclick="ptab('holdings',this)">Holdings</div>
@@ -512,32 +510,10 @@ const HD = {
 let currentHoldings = [];
 let donutChart = null, stressChart = null, perfChart = null;
 
-// ── Live stock fetch ──────────────────────────────────────────────────────────
-async function fetchLiveStocks(sector) {
-  if (!BACKEND_URL && window.location.hostname === 'localhost') {
-    return null; // skip on pure local without backend
-  }
-  try {
-    const res = await fetch(`${BACKEND_URL}/api/stocks?sector=${sector}`, {signal: AbortSignal.timeout(6000)});
-    if (!res.ok) return null;
-    const data = await res.json();
-    return data.stocks && data.stocks.length ? data.stocks : null;
-  } catch { return null; }
-}
-
-async function onSectorChange() {
+// ── Sector change ─────────────────────────────────────────────────────────────
+function onSectorChange() {
   const sector = document.getElementById('sector').value;
-  const live = await fetchLiveStocks(sector);
-  if (live) {
-    document.getElementById('api-banner').classList.remove('show');
-    currentHoldings = live.map(s => ({
-      t: s.t, n: s.n, p: s.p, ch: s.ch,
-      wl: [s.lo, s.hi], pe: s.pe, sg: s.sg, c: s.c, w: s.w
-    }));
-  } else {
-    document.getElementById('api-banner').classList.add('show');
-    currentHoldings = HD[sector] || HD.balanced;
-  }
+  currentHoldings = HD[sector] || HD.balanced;
   rebuild();
 }
 
@@ -849,16 +825,8 @@ function renderResult(d) {
 }
 
 // ── Init ──────────────────────────────────────────────────────────────────────
-(async () => {
-  currentHoldings = HD.balanced;
-  const live = await fetchLiveStocks('balanced');
-  if (live) {
-    currentHoldings = live;
-  } else {
-    document.getElementById('api-banner').classList.add('show');
-  }
-  rebuild();
-})();
+currentHoldings = HD.balanced;
+rebuild();
 </script>
 </body>
 </html>
