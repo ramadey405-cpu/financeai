@@ -107,3 +107,76 @@ def loan_predict():
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port, debug=False)
+
+import requests as http_requests
+
+GROQ_API_KEY = os.environ.get("GROQ_API_KEY", "")
+GROQ_URL     = "https://api.groq.com/openai/v1/chat/completions"
+GROQ_MODEL   = "llama3-8b-8192"
+
+def _groq(prompt: str, system: str = "") -> str:
+    if not GROQ_API_KEY:
+        return "GROQ_API_KEY not configured on the server."
+    messages = []
+    if system:
+        messages.append({"role": "system", "content": system})
+    messages.append({"role": "user", "content": prompt})
+    resp = http_requests.post(
+        GROQ_URL,
+        headers={"Authorization": f"Bearer {GROQ_API_KEY}", "Content-Type": "application/json"},
+        json={"model": GROQ_MODEL, "max_tokens": 800, "messages": messages},
+        timeout=20,
+    )
+    resp.raise_for_status()
+    return resp.json()["choices"][0]["message"]["content"].strip()
+
+
+@app.route("/api/analysis", methods=["POST"])
+def portfolio_analysis():
+    try:
+        body    = request.get_json(force=True)
+        sector  = body.get("sector", "balanced")
+        horizon = body.get("horizon", "medium")
+        amount  = body.get("amount", 10000)
+        stocks  = HD.get(sector, HD["balanced"])
+        holdings_text = "\n".join(
+            f"  - {s['t']} ({s['n']}): ${s['p']} | P/E {s['pe']} | Signal {s['sg']} | Weight {s['w']}%"
+            for s in stocks
+        )
+        prompt = (
+            f"Portfolio: {sector} sector, {horizon} horizon, ${amount:,} invested.\n"
+            f"Holdings:\n{holdings_text}\n\n"
+            "Provide a concise investment analysis covering:\n"
+            "1. Portfolio strengths\n"
+            "2. Key risks\n"
+            "3. Top 2 actionable recommendations\n"
+            "Keep it under 250 words, professional tone."
+        )
+        system = "You are a senior portfolio analyst. Be concise, data-driven, and actionable."
+        text   = _groq(prompt, system)
+        return jsonify({"analysis": text, "sector": sector})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+@app.route("/api/screen", methods=["POST"])
+def screen_stocks():
+    try:
+        body   = request.get_json(force=True)
+        sector = body.get("sector", "balanced")
+        stocks = HD.get(sector, HD["balanced"])
+        holdings_text = "\n".join(
+            f"  - {s['t']} ({s['n']}): ${s['p']} | P/E {s['pe']} | Signal {s['sg']}"
+            for s in stocks
+        )
+        prompt = (
+            f"Screen these {sector} portfolio stocks and rank the top 3 buys:\n"
+            f"{holdings_text}\n\n"
+            "For each pick give: ticker, one-line reason, target price range.\n"
+            "Keep it under 200 words."
+        )
+        system = "You are a quantitative equity analyst. Be brief and specific."
+        text   = _groq(prompt, system)
+        return jsonify({"screen": text, "sector": sector})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
