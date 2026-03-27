@@ -735,6 +735,37 @@ function buildPerf(p,amt){
     {l:'5 years',v:'$'+Math.round(amt*(1+p.r/100)**5).toLocaleString(),s:'estimated'},
     {l:'10 years',v:'$'+Math.round(amt*(1+p.r/100)**10).toLocaleString(),s:p.lbl},
   ].map(r=>`<div class="proj-cell"><div class="proj-label">${r.l}</div><div class="proj-val">${r.v}</div><div class="proj-sub">${r.s}</div></div>`).join('');
+async function sendPrompt(promptText) {
+  const btn = document.querySelector('.btn-primary'); // Feedback for user
+  const originalText = btn.textContent;
+  
+  try {
+    btn.textContent = "Analyzing...";
+    btn.disabled = true;
+
+    // This calls your Python backend at the /api/analyze endpoint
+    const response = await fetch(`https://${window.BACKEND_URL}/api/analyze`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ prompt: promptText })
+    });
+
+    const data = await response.json();
+    
+    if (data.analysis) {
+      alert("AI Analysis Result:\n\n" + data.analysis);
+    } else {
+      alert("Error: " + (data.error || "Unknown error occurred"));
+    }
+  } catch (err) {
+    console.error("Backend connection failed:", err);
+    alert("Could not connect to the Python backend at " + window.BACKEND_URL);
+  } finally {
+    btn.textContent = originalText;
+    btn.disabled = false;
+  }
+}
+
 }
 
 
