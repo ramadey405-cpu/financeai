@@ -1,6 +1,4 @@
-
-
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -271,6 +269,17 @@ input[type=range]{background:transparent;border:none;padding:6px 0;accent-color:
             <option value="dividend">Dividend / income</option>
             <option value="growth">Growth</option>
             <option value="defensive">Defensive</option>
+            <optgroup label="── India (NSE) ──">
+            <option value="nifty50">Nifty 50</option>
+            <option value="india_it">India IT</option>
+            <option value="india_banking">India Banking</option>
+            <option value="india_energy">India Energy</option>
+            <option value="india_pharma">India Pharma</option>
+            <option value="india_auto">India Auto</option>
+            <option value="india_fmcg">India FMCG</option>
+            <option value="india_metals">India Metals</option>
+            <option value="india_infra">India Infra</option>
+            </optgroup>
           </select>
         </div>
       </div>
@@ -527,6 +536,88 @@ const HD={
     {t:'GLD',n:'SPDR Gold Trust',p:238.44,ch:0.44,wl:[175,255],pe:null,sg:'BUY',c:'#b45309',w:10},
     {t:'PG',n:'Procter & Gamble',p:166.80,ch:0.14,wl:[148,178],pe:25.8,sg:'HOLD',c:'#e11d48',w:8},
     {t:'KO',n:'Coca-Cola',p:64.20,ch:0.08,wl:[55,70],pe:23.2,sg:'HOLD',c:'#0891b2',w:7},
+  ],
+  nifty50:[
+    {t:'RELIANCE',n:'Reliance Industries',p:2405.1,ch:-3.52,wl:[1830.0,2751.35],pe:null,sg:'HOLD',c:'#2563eb',w:10},
+    {t:'TCS',n:'TCS Ltd',p:3439.2,ch:-0.19,wl:[2624.45,3989.9],pe:null,sg:'HOLD',c:'#0a7c4e',w:9},
+    {t:'HDFCBANK',n:'HDFC Bank',p:1489.5,ch:-2.39,wl:[1342.0,1725.0],pe:null,sg:'HOLD',c:'#e11d48',w:8},
+    {t:'ICICIBANK',n:'ICICI Bank',p:720.45,ch:-4.07,wl:[465.8,867.0],pe:null,sg:'BUY',c:'#94a3b8',w:7},
+    {t:'INFY',n:'Infosys Ltd',p:1689.55,ch:-1.91,wl:[1091.0,1848.0],pe:null,sg:'BUY',c:'#2563eb',w:7},
+    {t:'LT',n:'Larsen & Toubro',p:1781.0,ch:-3.72,wl:[1092.0,1981.75],pe:null,sg:'BUY',c:'#e11d48',w:6},
+    {t:'SBIN',n:'State Bank of India',p:470.0,ch:-4.19,wl:[240.15,542.3],pe:null,sg:'BUY',c:'#0891b2',w:5},
+    {t:'AXISBANK',n:'Axis Bank',p:661.0,ch:-2.78,wl:[568.4,866.9],pe:null,sg:'HOLD',c:'#0891b2',w:5},
+    {t:'BAJFINANCE',n:'Bajaj Finance',p:6780.0,ch:-4.85,wl:[4362.0,8050.0],pe:null,sg:'BUY',c:'#e11d48',w:4},
+    {t:'HINDUNILVR',n:'Hindustan Unilever',p:2340.9,ch:-0.35,wl:[2120.0,2859.3],pe:null,sg:'HOLD',c:'#64748b',w:4},
+    {t:'NTPC',n:'NTPC Ltd',p:128.65,ch:-4.84,wl:[88.15,152.1],pe:null,sg:'BUY',c:'#64748b',w:4},
+    {t:'MARUTI',n:'Maruti Suzuki',p:7150.0,ch:-5.58,wl:[6400.0,8368.0],pe:null,sg:'SELL',c:'#9333ea',w:4},
+    {t:'SUNPHARMA',n:'Sun Pharma',p:767.25,ch:-2.0,wl:[502.3,851.0],pe:null,sg:'BUY',c:'#db2777',w:4},
+    {t:'BHARTIARTL',n:'Bharti Airtel',p:735.85,ch:-3.83,wl:[454.11,781.8],pe:null,sg:'BUY',c:'#b45309',w:3},
+    {t:'ITC',n:'ITC Ltd',p:223.6,ch:-3.33,wl:[192.4,265.3],pe:null,sg:'HOLD',c:'#0891b2',w:3},
+    {t:'KOTAKBANK',n:'Kotak Mahindra Bank',p:1960.0,ch:-3.69,wl:[1626.0,2253.0],pe:null,sg:'HOLD',c:'#db2777',w:3},
+    {t:'M&M',n:'Mahindra & Mahindra',p:855.05,ch:-4.06,wl:[660.25,979.0],pe:null,sg:'SELL',c:'#b45309',w:3},
+    {t:'TATAMOTORS',n:'Tata Motors',p:459.4,ch:-6.77,wl:[156.7,536.7],pe:null,sg:'BUY',c:'#b45309',w:3},
+    {t:'HCLTECH',n:'HCL Technologies',p:1111.65,ch:-1.17,wl:[814.35,1377.75],pe:null,sg:'BUY',c:'#16a34a',w:3},
+    {t:'TITAN',n:'Titan Company',p:2293.0,ch:-4.37,wl:[1300.35,2677.9],pe:null,sg:'BUY',c:'#94a3b8',w:3}
+  ],
+  india_it:[
+    {t:'TCS',n:'TCS Ltd',p:3439.2,ch:-0.19,wl:[2624.45,3989.9],pe:null,sg:'HOLD',c:'#0a7c4e',w:30},
+    {t:'INFY',n:'Infosys Ltd',p:1689.55,ch:-1.91,wl:[1091.0,1848.0],pe:null,sg:'BUY',c:'#2563eb',w:25},
+    {t:'HCLTECH',n:'HCL Technologies',p:1111.65,ch:-1.17,wl:[814.35,1377.75],pe:null,sg:'BUY',c:'#16a34a',w:18},
+    {t:'WIPRO',n:'Wipro Ltd',p:621.3,ch:-2.42,wl:[346.25,739.85],pe:null,sg:'BUY',c:'#7c3aed',w:15},
+    {t:'TECHM',n:'Tech Mahindra',p:1519.0,ch:-2.59,wl:[846.7,1630.0],pe:null,sg:'BUY',c:'#64748b',w:12}
+  ],
+  india_banking:[
+    {t:'HDFCBANK',n:'HDFC Bank',p:1489.5,ch:-2.39,wl:[1342.0,1725.0],pe:null,sg:'HOLD',c:'#e11d48',w:20},
+    {t:'ICICIBANK',n:'ICICI Bank',p:720.45,ch:-4.07,wl:[465.8,867.0],pe:null,sg:'BUY',c:'#94a3b8',w:17},
+    {t:'SBIN',n:'State Bank of India',p:470.0,ch:-4.19,wl:[240.15,542.3],pe:null,sg:'BUY',c:'#0891b2',w:13},
+    {t:'AXISBANK',n:'Axis Bank',p:661.0,ch:-2.78,wl:[568.4,866.9],pe:null,sg:'HOLD',c:'#0891b2',w:11},
+    {t:'KOTAKBANK',n:'Kotak Mahindra Bank',p:1960.0,ch:-3.69,wl:[1626.0,2253.0],pe:null,sg:'HOLD',c:'#db2777',w:9},
+    {t:'BAJFINANCE',n:'Bajaj Finance',p:6780.0,ch:-4.85,wl:[4362.0,8050.0],pe:null,sg:'BUY',c:'#e11d48',w:8},
+    {t:'BAJAJFINSV',n:'Bajaj Finserv',p:16684.0,ch:-3.94,wl:[8273.7,19325.0],pe:null,sg:'BUY',c:'#db2777',w:7},
+    {t:'INDUSINDBK',n:'IndusInd Bank',p:899.95,ch:-6.19,wl:[789.0,1242.0],pe:null,sg:'SELL',c:'#1d4ed8',w:15}
+  ],
+  india_energy:[
+    {t:'RELIANCE',n:'Reliance Industries',p:2405.1,ch:-3.52,wl:[1830.0,2751.35],pe:null,sg:'HOLD',c:'#2563eb',w:25},
+    {t:'NTPC',n:'NTPC Ltd',p:128.65,ch:-4.84,wl:[88.15,152.1],pe:null,sg:'BUY',c:'#64748b',w:14},
+    {t:'POWERGRID',n:'Power Grid Corp',p:202.5,ch:-0.86,wl:[136.88,209.95],pe:null,sg:'HOLD',c:'#1d4ed8',w:12},
+    {t:'ONGC',n:'ONGC Ltd',p:147.75,ch:-4.74,wl:[77.05,172.75],pe:null,sg:'BUY',c:'#94a3b8',w:10},
+    {t:'BPCL',n:'Bharat Petroleum',p:377.4,ch:-5.67,wl:[357.0,503.0],pe:null,sg:'SELL',c:'#9333ea',w:9},
+    {t:'IOC',n:'Indian Oil Corp',p:121.15,ch:-3.58,wl:[84.0,141.5],pe:null,sg:'BUY',c:'#7c3aed',w:8},
+    {t:'COALINDIA',n:'Coal India',p:155.9,ch:-1.67,wl:[123.25,203.8],pe:null,sg:'HOLD',c:'#94a3b8',w:22}
+  ],
+  india_pharma:[
+    {t:'SUNPHARMA',n:'Sun Pharma',p:767.25,ch:-2.0,wl:[502.3,851.0],pe:null,sg:'BUY',c:'#db2777',w:30},
+    {t:'DRREDDY',n:'Dr Reddy Labs',p:4750.0,ch:3.45,wl:[4135.0,5614.6],pe:null,sg:'BUY',c:'#2563eb',w:25},
+    {t:'CIPLA',n:'Cipla Ltd',p:965.0,ch:7.23,wl:[726.5,1005.0],pe:null,sg:'BUY',c:'#64748b',w:22},
+    {t:'DIVISLAB',n:'Divi Labs',p:4940.0,ch:2.92,wl:[3153.3,5425.1],pe:null,sg:'BUY',c:'#1d4ed8',w:23}
+  ],
+  india_auto:[
+    {t:'MARUTI',n:'Maruti Suzuki',p:7150.0,ch:-5.58,wl:[6400.0,8368.0],pe:null,sg:'SELL',c:'#9333ea',w:22},
+    {t:'TATAMOTORS',n:'Tata Motors',p:459.4,ch:-6.77,wl:[156.7,536.7],pe:null,sg:'BUY',c:'#b45309',w:18},
+    {t:'M&M',n:'Mahindra & Mahindra',p:855.05,ch:-4.06,wl:[660.25,979.0],pe:null,sg:'SELL',c:'#b45309',w:15},
+    {t:'BAJAJ-AUTO',n:'Bajaj Auto',p:3335.0,ch:-1.67,wl:[3041.0,4361.4],pe:null,sg:'HOLD',c:'#16a34a',w:14},
+    {t:'HEROMOTOCO',n:'Hero MotoCorp',p:2526.8,ch:-2.62,wl:[2505.15,3629.05],pe:null,sg:'SELL',c:'#9333ea',w:12},
+    {t:'EICHERMOT',n:'Eicher Motors',p:2440.75,ch:-3.16,wl:[2303.7,3037.0],pe:null,sg:'SELL',c:'#7c3aed',w:19}
+  ],
+  india_fmcg:[
+    {t:'HINDUNILVR',n:'Hindustan Unilever',p:2340.9,ch:-0.35,wl:[2120.0,2859.3],pe:null,sg:'HOLD',c:'#64748b',w:25},
+    {t:'ITC',n:'ITC Ltd',p:223.6,ch:-3.33,wl:[192.4,265.3],pe:null,sg:'HOLD',c:'#0891b2',w:20},
+    {t:'NESTLEIND',n:'Nestle India',p:19250.0,ch:0.38,wl:[16002.1,20609.15],pe:null,sg:'HOLD',c:'#0a7c4e',w:18},
+    {t:'BRITANNIA',n:'Britannia Industries',p:3566.6,ch:-0.19,wl:[3317.3,4153.0],pe:null,sg:'HOLD',c:'#0a7c4e',w:17},
+    {t:'TATACONSUM',n:'Tata Consumer',p:769.9,ch:-4.69,wl:[505.05,889.0],pe:null,sg:'BUY',c:'#e11d48',w:20}
+  ],
+  india_metals:[
+    {t:'JSWSTEEL',n:'JSW Steel',p:630.0,ch:-7.48,wl:[336.0,776.5],pe:null,sg:'BUY',c:'#16a34a',w:25},
+    {t:'TATASTEEL',n:'Tata Steel',p:1110.25,ch:-5.4,wl:[539.5,1534.5],pe:null,sg:'BUY',c:'#9333ea',w:22},
+    {t:'HINDALCO',n:'Hindalco Industries',p:417.7,ch:-6.57,wl:[220.35,551.85],pe:null,sg:'BUY',c:'#0a7c4e',w:18},
+    {t:'COALINDIA',n:'Coal India',p:155.9,ch:-1.67,wl:[123.25,203.8],pe:null,sg:'HOLD',c:'#94a3b8',w:15},
+    {t:'GRASIM',n:'Grasim Industries',p:1685.8,ch:-4.58,wl:[840.05,1893.0],pe:null,sg:'BUY',c:'#0891b2',w:20}
+  ],
+  india_infra:[
+    {t:'LT',n:'Larsen & Toubro',p:1781.0,ch:-3.72,wl:[1092.0,1981.75],pe:null,sg:'BUY',c:'#e11d48',w:30},
+    {t:'ADANIPORTS',n:'Adani Ports & SEZ',p:715.0,ch:-6.22,wl:[384.4,901.0],pe:null,sg:'BUY',c:'#2563eb',w:25},
+    {t:'ULTRACEMCO',n:'UltraTech Cement',p:7398.45,ch:-2.76,wl:[4770.0,8269.0],pe:null,sg:'BUY',c:'#1d4ed8',w:22},
+    {t:'SHREECEM',n:'Shree Cement',p:25900.0,ch:-2.89,wl:[22531.0,32048.0],pe:null,sg:'HOLD',c:'#16a34a',w:23}
   ]
 };
 
@@ -621,6 +712,7 @@ function calcValueScore(i) {
 function vsColor(s){ return s>=70?'#0a7c4e':s>=50?'#2563eb':s>=35?'#92600a':'#c0392b'; }
 function vsTier(s) { return s>=70?'Strong value':s>=55?'Fair value':s>=40?'Neutral':'Overpriced'; }
 
+function isIndian(i){ return ['RELIANCE','TCS','HDFCBANK','ICICIBANK','INFY','LT','SBIN','AXISBANK','BAJFINANCE','HINDUNILVR','NTPC','MARUTI','SUNPHARMA','BHARTIARTL','ITC','KOTAKBANK','M&M','TATAMOTORS','HCLTECH','TITAN','WIPRO','TECHM','DRREDDY','CIPLA','DIVISLAB','BAJAJFINSV','INDUSINDBK','BPCL','IOC','COALINDIA','POWERGRID','ONGC','JSWSTEEL','TATASTEEL','HINDALCO','GRASIM','ADANIPORTS','ULTRACEMCO','SHREECEM','NESTLEIND','BRITANNIA','TATACONSUM','HDFCLIFE','SBILIFE','UPL','TITAN','ASIANPAINT','HEROMOTOCO','EICHERMOT','BAJAJ-AUTO','HDFC'].includes(i.t); }
 function renderHoldings(h) {
   const p = window._profile, amount = window._amount;
   document.getElementById('holdings-body').innerHTML = h.map(i => {
@@ -632,8 +724,8 @@ function renderHoldings(h) {
     const vt  = vsTier(vs);
     return `<tr>
       <td><div class="sym-cell"><div class="swatch" style="background:${i.c}"></div><div><div class="sym-t">${i.t}</div><div class="sym-n">${i.n}</div></div></div></td>
-      <td><div>${w}%</div><div style="font-size:10px;color:var(--ink3)">$${Math.round(amount*w/100).toLocaleString()}</div></td>
-      <td>$${i.p.toLocaleString()}</td>
+      <td><div>${w}%</div><div style="font-size:10px;color:var(--ink3)">${isIndian(i)?'₹':'$'}${Math.round(amount*w/100).toLocaleString()}</div></td>
+      <td>${isIndian(i)?'₹':'$'}${i.p.toLocaleString()}</td>
       <td class="${i.ch>=0?'pos-t':'neg-t'}">${i.ch>=0?'+':''}${i.ch.toFixed(2)}%</td>
       <td><div style="font-size:11px;color:var(--ink3)">${i.wl[0]}–${i.wl[1]}</div><div class="mini-track"><div class="mini-fill" style="width:${pos}%"></div></div></td>
       <td class="muted">${i.pe?i.pe.toFixed(1):'—'}</td>
